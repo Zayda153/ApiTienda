@@ -14,8 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('proveedores', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->mediumIncrements('id')->comment('ID');
+            $table->string('nombre', 45)->comment('Nombre del proveedor');
+            $table->string('empresa', 45)->comment('Empresa');
+            $table->string('dias_visita', 45)->comment('dias_visita');
         });
     }
 

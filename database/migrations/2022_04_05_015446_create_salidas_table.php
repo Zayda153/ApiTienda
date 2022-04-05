@@ -14,8 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('salidas', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->mediumIncrements('id')->comment('ID');
+            $table->unsignedMediumInteger('entrada_id');
+            $table->string('nombre', 45)->comment('nombre');
+            $table->decimal('salida', 10,2)->comment('salida');
+            $table->foreign('entrada_id')->references('id')->on('entradas');
         });
     }
 

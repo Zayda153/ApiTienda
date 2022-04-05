@@ -14,8 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('productos', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->mediumIncrements('id')->comment('ID');
+            $table->unsignedMediumInteger('proveedor_id');
+            $table->string('producto', 45)->comment('Nombre del proveedor');
+            $table->decimal('existencias', 10,2)->comment('Empresa');
+            $table->decimal('costo_unitario', 10,2)->comment('dias_visita');
+            $table->decimal('precio_unitario', 10,2)->comment('dias_visita');
+            $table->foreign('proveedor_id')->references('id')->on('proveedores');
+
         });
     }
 

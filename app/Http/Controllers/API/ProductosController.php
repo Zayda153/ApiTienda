@@ -4,6 +4,8 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Resources\ProductoResource;
+use App\Models\Producto;
 
 class ProductosController extends Controller
 {
@@ -14,7 +16,7 @@ class ProductosController extends Controller
      */
     public function index()
     {
-        //
+        return ProductoResource::collection(Producto::all());
     }
 
     /**
@@ -24,7 +26,9 @@ class ProductosController extends Controller
      */
     public function create()
     {
-        //
+        $request->validate(Producto::reglasValidacion());
+        $producto = Producto::create($request->all());
+        return new ProductoResource($producto);
     }
 
     /**
@@ -35,7 +39,14 @@ class ProductosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $producto = new Producto();
+        $producto->proveedor_id = $request->proveedor_id;
+        $producto->producto = $request->producto;
+        $producto->existencias = $request->existencias;
+        $producto->costo_unitario = $request->costo_unitario;
+        $producto->precio_unitario = $request->precio_unitario;
+
+        $producto->save();
     }
 
     /**
@@ -46,7 +57,7 @@ class ProductosController extends Controller
      */
     public function show($id)
     {
-        //
+        return new ProductoResource(Producto::findOrFail($id));
     }
 
     /**
@@ -69,7 +80,10 @@ class ProductosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate(Producto::reglasValidacion());
+        $producto = Producto::findOrFail($id);
+        $producto->update($request->all());
+        return new ProductoResource($producto);
     }
 
     /**

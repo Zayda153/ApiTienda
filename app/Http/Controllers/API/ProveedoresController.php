@@ -4,6 +4,9 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Resources\ProveedorResource;
+use App\Models\Proveedor;
+
 
 class ProveedoresController extends Controller
 {
@@ -14,7 +17,7 @@ class ProveedoresController extends Controller
      */
     public function index()
     {
-        //
+        return ProveedorResource::collection(Proveedor::all());
     }
 
     /**
@@ -24,7 +27,9 @@ class ProveedoresController extends Controller
      */
     public function create()
     {
-        //
+        $request->validate(Proveedor::reglasValidacion());
+        $proveedor = Proveedor::create($request->all());
+        return new ProveedorResource($proveedor);
     }
 
     /**
@@ -35,7 +40,12 @@ class ProveedoresController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $proveedor = new Proveedor();
+        $proveedor->nombre = $request->nombre;
+        $proveedor->empresa = $request->empresa;
+        $proveedor->dias_visita = $request->dias_visita;
+       
+        $proveedor->save();
     }
 
     /**
@@ -46,7 +56,7 @@ class ProveedoresController extends Controller
      */
     public function show($id)
     {
-        //
+        return new ProveedorResource(Proveedor::findOrFail($id));
     }
 
     /**
@@ -69,7 +79,10 @@ class ProveedoresController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate(Proveedor::reglasValidacion());
+        $proveedor = Proveedor::findOrFail($id);
+        $proveedor->update($request->all());
+        return new ProveedorResource($proveedor);
     }
 
     /**

@@ -4,6 +4,9 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Resources\VentaResource;
+use App\Models\Venta;
+
 
 class VentasController extends Controller
 {
@@ -14,7 +17,7 @@ class VentasController extends Controller
      */
     public function index()
     {
-        //
+        return VentaResource::collection(Venta::all());
     }
 
     /**
@@ -24,7 +27,9 @@ class VentasController extends Controller
      */
     public function create()
     {
-        //
+        $request->validate(Venta::reglasValidacion());
+        $venta = Venta::create($request->all());
+        return new VentaResource($venta);
     }
 
     /**
@@ -35,7 +40,12 @@ class VentasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $venta = new Venta();
+        $venta->producto_id = $request->producto_id;
+        $venta->cantidad = $request->cantidad;
+        $venta->total = $request->total;
+
+        $venta->save();
     }
 
     /**
@@ -46,7 +56,7 @@ class VentasController extends Controller
      */
     public function show($id)
     {
-        //
+        return new VentaResource(Venta::findOrFail($id));
     }
 
     /**
@@ -69,7 +79,10 @@ class VentasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate(Venta::reglasValidacion());
+        $venta = Venta::findOrFail($id);
+        $venta->update($request->all());
+        return new VentaResource($venta);
     }
 
     /**

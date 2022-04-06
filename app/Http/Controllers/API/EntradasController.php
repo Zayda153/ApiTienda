@@ -4,6 +4,8 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Resources\EntradaResource;
+use App\Models\Entrada;
 
 class EntradasController extends Controller
 {
@@ -14,7 +16,7 @@ class EntradasController extends Controller
      */
     public function index()
     {
-        //
+        return EntradaResource::collection(Entrada::all());
     }
 
     /**
@@ -24,7 +26,9 @@ class EntradasController extends Controller
      */
     public function create()
     {
-        //
+        $request->validate(Entrada::reglasValidacion());
+        $entrada = Entrada::create($request->all());
+        return new EntradaResource($entrada);
     }
 
     /**
@@ -35,7 +39,11 @@ class EntradasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $entrada = new Entrada();
+        $entrada->venta_id = $request->venta_id;
+        $entrada->total = $request->total;
+
+        $entrada->save();
     }
 
     /**
@@ -46,7 +54,7 @@ class EntradasController extends Controller
      */
     public function show($id)
     {
-        //
+        return new EntradaResource(Entrada::findOrFail($id));
     }
 
     /**
@@ -69,7 +77,10 @@ class EntradasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate(Entrada::reglasValidacion());
+        $entrada = Entrada::findOrFail($id);
+        $entrada->update($request->all());
+        return new EntradaResource($entrada);
     }
 
     /**

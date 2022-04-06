@@ -4,6 +4,8 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Resources\SalidaResource;
+use App\Models\Salida;
 
 class SalidasController extends Controller
 {
@@ -14,7 +16,7 @@ class SalidasController extends Controller
      */
     public function index()
     {
-        //
+        return SalidaResource::collection(Salida::all());
     }
 
     /**
@@ -24,7 +26,9 @@ class SalidasController extends Controller
      */
     public function create()
     {
-        //
+        $request->validate(Salida::reglasValidacion());
+        $salida = Salida::create($request->all());
+        return new SalidaResource($salida);
     }
 
     /**
@@ -35,7 +39,12 @@ class SalidasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $salida = new Salida();
+        $salida->entrada_id = $request->entrada_id;
+        $salida->nombre = $request->nombre;
+        $salida->salida = $request->salida;
+
+        $salida->save();
     }
 
     /**
@@ -46,7 +55,7 @@ class SalidasController extends Controller
      */
     public function show($id)
     {
-        //
+        return new SalidaResource(Salida::findOrFail($id));
     }
 
     /**
@@ -69,7 +78,10 @@ class SalidasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate(Salida::reglasValidacion());
+        $salida = Salida::findOrFail($id);
+        $salida->update($request->all());
+        return new SalidaResource($salida);
     }
 
     /**

@@ -14,6 +14,11 @@ class SalidaResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id
+            , 'entrada_id' => $this->entrada_id
+            , 'nombre' => $this->nombre
+            , 'salida' => $this->salida
+        ];
     }
 }

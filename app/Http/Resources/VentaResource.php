@@ -14,6 +14,11 @@ class VentaResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id
+            , 'producto_id' => $this->producto_id
+            , 'cantidad' => $this->cantidad
+            , 'total' => $this->total
+        ];
     }
 }

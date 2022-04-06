@@ -14,6 +14,13 @@ class ProductoResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id
+            , 'proveedor_id' => $this->proveedor_id
+            , 'producto' => $this->producto
+            , 'existencias' => $this->existencias
+            , 'costo_unitario' => $this->costo_unitario
+            , 'precio_unitario' => $this->precio_unitario
+        ];
     }
 }

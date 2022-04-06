@@ -14,6 +14,10 @@ class EntradaResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id
+            , 'venta_id' => $this->venta_id
+            , 'total' => $this->total
+        ];
     }
 }

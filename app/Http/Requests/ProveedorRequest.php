@@ -13,7 +13,7 @@ class ProveedorRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,20 @@ class ProveedorRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'nombre' => 'required|string|min:0',
+            'empresa' => 'required|string|min:0|max:2000',
+            'dias_visita' => 'required|string|min:0|max:50',
+        ];
+    }
+
+    public function messages()
+    {
+    return [
+        'nombre.required' => 'nombre debe ser un campo requerido',
+        'empresa.required' => 'La empresa debe ser un campo requerido',
+        'empresa.min' => 'La empresa debe tener minimo tres caracteres',
+        'empresa.max' => 'La empresa debe tener maximo 6 caracteres',
+        'dias_visita.required' => 'dias_visita debe ser un campo requerido',
         ];
     }
 }

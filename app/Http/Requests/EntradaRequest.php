@@ -13,7 +13,7 @@ class EntradaRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,16 @@ class EntradaRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'venta_id' => 'required|integer|min:0',
+             'total' => 'required|numeric|min:0|max:3000',
+        ];
+    }
+
+    public function messages()
+    {
+    return [
+        'venta_id.required' => 'usuario_id debe ser un campo requerido',
+        'total.required' => 'El total debe ser un campo requerido',
         ];
     }
 }

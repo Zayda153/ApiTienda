@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class SalidasTableSeeder extends Seeder
 {
@@ -14,6 +15,12 @@ class SalidasTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('salidas')->insert([
+            [
+                 'entrada_id' => 1
+                ,'nombre' => 'Sabritas'
+                ,'salida'=> 500
+            ]
+        ]);
     }
 }

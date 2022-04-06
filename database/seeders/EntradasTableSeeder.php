@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class EntradasTableSeeder extends Seeder
 {
@@ -14,6 +15,11 @@ class EntradasTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('entradas')->insert([
+            [
+                 'venta_id' => 1
+                ,'total' => 42
+            ]
+        ]);
     }
 }

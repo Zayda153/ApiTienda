@@ -4,8 +4,11 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Resources\UserResource;
+use App\Models\User;
+use App\Http\Controllers\ApiController;
 
-class UsersController extends Controller
+class UsersController extends ApiController
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +17,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        //
+        return UserResource::collection(User::all());
     }
 
     /**
@@ -24,7 +27,9 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //
+        $request->validate(User::reglasValidacion());
+        $user = User::create($request->all());
+        return new UserResource($user);
     }
 
     /**
@@ -35,7 +40,12 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = $request->password;
+
+        $user->save();
     }
 
     /**
@@ -46,7 +56,7 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        //
+        return new UserResource(User::findOrFail($id));
     }
 
     /**
@@ -69,7 +79,10 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate(User::reglasValidacion());
+        $user = User::findOrFail($id);
+        $user->update($request->all());
+        return new UserResource($user);
     }
 
     /**

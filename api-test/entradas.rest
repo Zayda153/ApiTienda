@@ -1,0 +1,29 @@
+### Obtener entradas
+GET http://127.0.0.1:8000/api/entradas 
+Accept: application/json 
+Authorization: Bearer 1|OgyqiMc8OVEgEfvmUi86vQz5SVSH6JWEcHRsFrPe
+
+### Obtener una entradas 
+GET http://127.0.0.1:8000/api/entradas/1 
+Accept: application/json 
+Authorization: Bearer 1|OgyqiMc8OVEgEfvmUi86vQz5SVSH6JWEcHRsFrPe
+
+### Crear una entradas 
+POST http://127.0.0.1:8000/api/entradas 
+Accept: application/json 
+Content-Type: application/json 
+Authorization: Bearer 1|OgyqiMc8OVEgEfvmUi86vQz5SVSH6JWEcHRsFrPe
+
+{
+"venta_id":1 ,"total":42 
+}
+
+### Editar entradas 
+PUT http://127.0.0.1:8000/api/entradas/1 
+Accept: application/json 
+Content-Type: application/json 
+Authorization: Bearer 1|OgyqiMc8OVEgEfvmUi86vQz5SVSH6JWEcHRsFrPe
+
+{
+"venta_id":1 ,"total":80
+}

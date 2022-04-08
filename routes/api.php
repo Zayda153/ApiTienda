@@ -6,6 +6,8 @@ use App\Http\Controllers\API\ProveedoresController;
 use App\Http\Controllers\API\ProductosController;
 use App\Http\Controllers\API\VentasController;
 use App\Http\Controllers\API\UsersController;
+use App\Http\Controllers\API\SalidasController;
+use App\Http\Controllers\API\EntradasController;
 use App\Models\User;
 
 /*
@@ -25,6 +27,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::APIresource('users', UsersController::class)->names('api-users');
     Route::APIresource('productos', ProductosController::class)->names('api-productos');
     Route::APIresource('ventas', VentasController::class)->names('api-ventas');
+    Route::APIresource('salidas', SalidasController::class)->names('api-salidas');
+    Route::APIresource('entradas', EntradasController::class)->names('api-entradas');
     
 });
 

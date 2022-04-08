@@ -1,0 +1,29 @@
+### Obtener proveedores
+GET http://127.0.0.1:8000/api/proveedores 
+Accept: application/json 
+Authorization: Bearer 1|OgyqiMc8OVEgEfvmUi86vQz5SVSH6JWEcHRsFrPe
+
+### Obtener una venta 
+GET http://127.0.0.1:8000/api/proveedores/1 
+Accept: application/json 
+Authorization: Bearer 1|OgyqiMc8OVEgEfvmUi86vQz5SVSH6JWEcHRsFrPe
+
+### Crear una venta 
+POST http://127.0.0.1:8000/api/proveedores 
+Accept: application/json 
+Content-Type: application/json 
+Authorization: Bearer 1|OgyqiMc8OVEgEfvmUi86vQz5SVSH6JWEcHRsFrPe
+
+{
+"nombre":"Javier Eduardo Martinez" ,"empresa":"Bimbo" ,"dias_visita":"Lunes"
+}
+
+### Editar venta 
+PUT http://127.0.0.1:8000/api/proveedores/1 
+Accept: application/json 
+Content-Type: application/json 
+Authorization: Bearer 1|OgyqiMc8OVEgEfvmUi86vQz5SVSH6JWEcHRsFrPe
+
+{
+"nombre":"Norma Rubi Reyes" ,"empresa":"Gamesa" ,"dias_visita":"Viernes"
+}

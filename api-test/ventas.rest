@@ -1,0 +1,29 @@
+### Obtener ventas
+GET http://127.0.0.1:8000/api/ventas 
+Accept: application/json 
+Authorization: Bearer 1|OgyqiMc8OVEgEfvmUi86vQz5SVSH6JWEcHRsFrPe
+
+### Obtener una venta 
+GET http://127.0.0.1:8000/api/ventas/1 
+Accept: application/json 
+Authorization: Bearer 1|OgyqiMc8OVEgEfvmUi86vQz5SVSH6JWEcHRsFrPe
+
+### Crear una venta 
+POST http://127.0.0.1:8000/api/ventas 
+Accept: application/json 
+Content-Type: application/json 
+Authorization: Bearer 1|OgyqiMc8OVEgEfvmUi86vQz5SVSH6JWEcHRsFrPe
+
+{
+"producto_id":1 ,"cantidad":2 ,"total":42 
+}
+
+### Editar venta 
+PUT http://127.0.0.1:8000/api/ventas/1 
+Accept: application/json 
+Content-Type: application/json 
+Authorization: Bearer 1|OgyqiMc8OVEgEfvmUi86vQz5SVSH6JWEcHRsFrPe
+
+{
+"producto_id":1 ,"cantidad":3 ,"total":45 
+}

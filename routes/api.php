@@ -1,7 +1,9 @@
 <?php
 
+use Illuminate\Validation\ValidationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\API\ProveedoresController;
 use App\Http\Controllers\API\ProductosController;
 use App\Http\Controllers\API\VentasController;

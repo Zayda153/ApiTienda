@@ -6,9 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Resources\UserResource;
 use App\Models\User;
-use App\Http\Controllers\ApiController;
 
-class UsersController extends ApiController
+class UsersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -93,6 +92,11 @@ class UsersController extends ApiController
      */
     public function destroy($id)
     {
-        //
+        $delete = User::findOrFail($id);
+        $delete -> delete();
+        return response() -> json([
+            "message" =>"Datos Borrados"
+        ],202);
+
     }
 }

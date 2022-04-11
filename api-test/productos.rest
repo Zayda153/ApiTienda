@@ -1,18 +1,18 @@
 ### Obtener productos 
 GET http://127.0.0.1:8000/api/productos 
 Accept: application/json 
-Authorization: Bearer 1|OgyqiMc8OVEgEfvmUi86vQz5SVSH6JWEcHRsFrPe
+Authorization: Bearer 1|rmp1VknPHPcGTAkeKPATYttpyj1zf8DU8rZI5ZOI
 
 ### Obtener un producto 
 GET http://127.0.0.1:8000/api/productos/1 
 Accept: application/json 
-Authorization: Bearer 1|OgyqiMc8OVEgEfvmUi86vQz5SVSH6JWEcHRsFrPe
+Authorization: Bearer 1|rmp1VknPHPcGTAkeKPATYttpyj1zf8DU8rZI5ZOI
 
 ### Crear un producto 
 POST http://127.0.0.1:8000/api/productos 
 Accept: application/json 
 Content-Type: application/json 
-Authorization: Bearer 1|OgyqiMc8OVEgEfvmUi86vQz5SVSH6JWEcHRsFrPe
+Authorization: Bearer 1|rmp1VknPHPcGTAkeKPATYttpyj1zf8DU8rZI5ZOI
 
 {
 "proveedor_id":1 ,"producto":"Tostadas" ,"existencias":10 ,"costo_unitario":20 ,"precio_unitario":24
@@ -22,7 +22,7 @@ Authorization: Bearer 1|OgyqiMc8OVEgEfvmUi86vQz5SVSH6JWEcHRsFrPe
 PUT http://127.0.0.1:8000/api/productos/1 
 Accept: application/json 
 Content-Type: application/json 
-Authorization: Bearer 1|OgyqiMc8OVEgEfvmUi86vQz5SVSH6JWEcHRsFrPe
+Authorization: Bearer 1|rmp1VknPHPcGTAkeKPATYttpyj1zf8DU8rZI5ZOI
 
 {
 "proveedor_id":1 ,"producto":"Tostadas Cariocas" ,"existencias":10 ,"costo_unitario":20 ,"precio_unitario":24

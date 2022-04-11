@@ -1,0 +1,37 @@
+### Obtener users
+GET http://127.0.0.1:8000/api/users 
+Content-Type: application/json 
+Accept: application/json 
+Authorization: Bearer 1|rmp1VknPHPcGTAkeKPATYttpyj1zf8DU8rZI5ZOI
+
+### Obtener una users 
+GET http://127.0.0.1:8000/api/users/1 
+Accept: application/json 
+Authorization: Bearer 1|rmp1VknPHPcGTAkeKPATYttpyj1zf8DU8rZI5ZOI
+
+### Crear una users 
+POST http://127.0.0.1:8000/api/users 
+Accept: application/json 
+Content-Type: application/json 
+Authorization: Bearer 1|rmp1VknPHPcGTAkeKPATYttpyj1zf8DU8rZI5ZOI
+
+
+{
+"name":"Norma Rubi" ,"email":"norma12@gmail.com" ,"password":"14725836" 
+}
+
+### Editar users 
+PUT http://127.0.0.1:8000/api/users/1 
+Accept: application/json 
+Content-Type: application/json 
+Authorization: Bearer 1|rmp1VknPHPcGTAkeKPATYttpyj1zf8DU8rZI5ZOI
+
+{
+"name":"Norma Rubi" ,"email":"norma@gmail.com" ,"password":"14725836" 
+}
+
+### Eliminar users 
+DELETE  http://127.0.0.1:8000/api/users/3 
+Accept: application/json 
+Content-Type: application/json 
+Authorization: Bearer 1|rmp1VknPHPcGTAkeKPATYttpyj1zf8DU8rZI5ZOI

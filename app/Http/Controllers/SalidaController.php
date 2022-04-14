@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Salida;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class SalidaController
@@ -31,6 +32,10 @@ class SalidaController extends Controller
      */
     public function create()
     {
+        $user= Auth::user();
+        if(!$user->can('salidas.create')){
+            abort(403,'Sin acceso a esta sección');
+        }
         $salida = new Salida();
         return view('salida.create', compact('salida'));
     }
@@ -43,7 +48,7 @@ class SalidaController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(Salida::$rules);
+        
 
         $salida = Salida::create($request->all());
 
@@ -72,6 +77,11 @@ class SalidaController extends Controller
      */
     public function edit($id)
     {
+
+        $user= Auth::user();
+        if(!$user->can('salidas.create')){
+            abort(403,'Sin acceso a esta sección');
+        }
         $salida = Salida::find($id);
 
         return view('salida.edit', compact('salida'));
@@ -86,8 +96,10 @@ class SalidaController extends Controller
      */
     public function update(Request $request, Salida $salida)
     {
-        request()->validate(Salida::$rules);
-
+        $user= Auth::user();
+        if(!$user->can('salidas.create')){
+            abort(403,'Sin acceso a esta sección');
+        }
         $salida->update($request->all());
 
         return redirect()->route('salidas.index')
@@ -101,6 +113,10 @@ class SalidaController extends Controller
      */
     public function destroy($id)
     {
+        $user= Auth::user();
+        if(!$user->can('salidas.create')){
+            abort(403,'Sin acceso a esta sección');
+        }
         $salida = Salida::find($id)->delete();
 
         return redirect()->route('salidas.index')

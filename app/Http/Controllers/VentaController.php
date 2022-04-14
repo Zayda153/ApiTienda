@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Venta;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class VentaController
@@ -31,6 +32,10 @@ class VentaController extends Controller
      */
     public function create()
     {
+        $user= Auth::user();
+        if(!$user->can('ventas.create')){
+            abort(403,'Sin acceso a esta sección');
+        }
         $venta = new Venta();
         return view('venta.create', compact('venta'));
     }
@@ -43,7 +48,7 @@ class VentaController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(Venta::$rules);
+        
 
         $venta = Venta::create($request->all());
 
@@ -72,6 +77,10 @@ class VentaController extends Controller
      */
     public function edit($id)
     {
+        $user= Auth::user();
+        if(!$user->can('ventas.create')){
+            abort(403,'Sin acceso a esta sección');
+        }
         $venta = Venta::find($id);
 
         return view('venta.edit', compact('venta'));
@@ -86,7 +95,10 @@ class VentaController extends Controller
      */
     public function update(Request $request, Venta $venta)
     {
-        request()->validate(Venta::$rules);
+        $user= Auth::user();
+        if(!$user->can('ventas.create')){
+            abort(403,'Sin acceso a esta sección');
+        }
 
         $venta->update($request->all());
 
@@ -101,6 +113,10 @@ class VentaController extends Controller
      */
     public function destroy($id)
     {
+        $user= Auth::user();
+        if(!$user->can('ventas.create')){
+            abort(403,'Sin acceso a esta sección');
+        }
         $venta = Venta::find($id)->delete();
 
         return redirect()->route('ventas.index')

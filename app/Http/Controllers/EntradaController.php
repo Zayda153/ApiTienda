@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Entrada;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class EntradaController
@@ -31,6 +32,11 @@ class EntradaController extends Controller
      */
     public function create()
     {
+        $user= Auth::user();
+        if(!$user->can('entradas.create')){
+            abort(403,'Sin acceso a esta sección');
+        }
+
         $entrada = new Entrada();
         return view('entrada.create', compact('entrada'));
     }
@@ -43,7 +49,7 @@ class EntradaController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(Entrada::$rules);
+        
 
         $entrada = Entrada::create($request->all());
 
@@ -72,6 +78,12 @@ class EntradaController extends Controller
      */
     public function edit($id)
     {
+
+        $user= Auth::user();
+        if(!$user->can('entradas.create')){
+            abort(403,'Sin acceso a esta sección');
+        }
+
         $entrada = Entrada::find($id);
 
         return view('entrada.edit', compact('entrada'));
@@ -86,7 +98,10 @@ class EntradaController extends Controller
      */
     public function update(Request $request, Entrada $entrada)
     {
-        request()->validate(Entrada::$rules);
+        $user= Auth::user();
+        if(!$user->can('entradas.create')){
+            abort(403,'Sin acceso a esta sección');
+        }
 
         $entrada->update($request->all());
 
@@ -101,6 +116,12 @@ class EntradaController extends Controller
      */
     public function destroy($id)
     {
+
+        $user= Auth::user();
+        if(!$user->can('entradas.create')){
+            abort(403,'Sin acceso a esta sección');
+        }
+
         $entrada = Entrada::find($id)->delete();
 
         return redirect()->route('entradas.index')

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedMediumInteger('entrada_id');
             $table->string('nombre', 45)->comment('nombre');
             $table->decimal('salida', 10,2)->comment('salida');
-            $table->foreign('entrada_id')->references('id')->on('entradas');
+            //table->foreign('entrada_id')->references('id')->on('entradas');
         });
     }
 

@@ -24,6 +24,8 @@
                                 <li><a class="dropdown-item" href="{{ route('entradas.index') }}"><i class="fa fa-box-open">Entradas</i></a></li>
 
                                 <li><a class="dropdown-item" href="{{ route('salidas.index') }}"><i class="fa fa-box-open">Salidas</i></a></li>
+
+                                <li><a class="dropdown-item" href="{{ route('users.index') }}"><i class="fa fa-box-open">Usuarios</i></a></li>
                               
 
                             </ul>

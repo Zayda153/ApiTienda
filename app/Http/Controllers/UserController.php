@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class UserController
@@ -31,6 +32,10 @@ class UserController extends Controller
      */
     public function create()
     {
+        $user= Auth::user();
+        if(!$user->can('users.create')){
+            abort(403,'Sin acceso a esta sección');
+        }
         $user = new User();
         return view('user.create', compact('user'));
     }
@@ -72,6 +77,11 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+        $user= Auth::user();
+        if(!$user->can('users.create')){
+            abort(403,'Sin acceso a esta sección');
+        }
+
         $user = User::find($id);
 
         return view('user.edit', compact('user'));
@@ -86,6 +96,11 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        $user= Auth::user();
+        if(!$user->can('users.create')){
+            abort(403,'Sin acceso a esta sección');
+        }
+
         request()->validate(User::$rules);
 
         $user->update($request->all());
@@ -101,6 +116,11 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
+        $user= Auth::user();
+        if(!$user->can('users.create')){
+            abort(403,'Sin acceso a esta sección');
+        }
+
         $user = User::find($id)->delete();
 
         return redirect()->route('users.index')

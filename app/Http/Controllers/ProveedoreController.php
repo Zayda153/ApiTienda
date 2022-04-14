@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Proveedore;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class ProveedoreController
@@ -31,6 +32,12 @@ class ProveedoreController extends Controller
      */
     public function create()
     {
+
+        $user= Auth::user();
+        if(!$user->can('proveedores.create')){
+            abort(403,'Sin acceso a esta sección');
+        }
+
         $proveedore = new Proveedore();
         return view('proveedore.create', compact('proveedore'));
     }
@@ -43,7 +50,7 @@ class ProveedoreController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(Proveedore::$rules);
+        
 
         $proveedore = Proveedore::create($request->all());
 
@@ -72,6 +79,12 @@ class ProveedoreController extends Controller
      */
     public function edit($id)
     {
+
+        $user= Auth::user();
+        if(!$user->can('proveedores.create')){
+            abort(403,'Sin acceso a esta sección');
+        }
+
         $proveedore = Proveedore::find($id);
 
         return view('proveedore.edit', compact('proveedore'));
@@ -86,7 +99,10 @@ class ProveedoreController extends Controller
      */
     public function update(Request $request, Proveedore $proveedore)
     {
-        request()->validate(Proveedore::$rules);
+        $user= Auth::user();
+        if(!$user->can('proveedores.create')){
+            abort(403,'Sin acceso a esta sección');
+        }
 
         $proveedore->update($request->all());
 
@@ -101,6 +117,11 @@ class ProveedoreController extends Controller
      */
     public function destroy($id)
     {
+        $user= Auth::user();
+        if(!$user->can('proveedores.create')){
+            abort(403,'Sin acceso a esta sección');
+        }
+
         $proveedore = Proveedore::find($id)->delete();
 
         return redirect()->route('proveedores.index')

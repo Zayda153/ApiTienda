@@ -17,7 +17,7 @@ return new class extends Migration
             $table->mediumIncrements('id')->comment('ID');
             $table->unsignedMediumInteger('venta_id');
             $table->decimal('total', 10,2)->comment('total');
-            $table->foreign('venta_id')->references('id')->on('ventas');
+            //$table->foreign('venta_id')->references('id')->on('ventas');
         });
     }
 

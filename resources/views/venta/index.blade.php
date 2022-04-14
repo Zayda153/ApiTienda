@@ -13,14 +13,15 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Venta') }}
+                                {{ __('Ventas') }}
                             </span>
-
+                            @can('ventas.create')
                              <div class="float-right">
                                 <a href="{{ route('ventas.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
+                                  {{ __('Nuevo') }}
                                 </a>
                               </div>
+                              @endcan
                         </div>
                     </div>
                     @if ($message = Session::get('success'))
@@ -53,12 +54,21 @@
 											<td>{{ $venta->total }}</td>
 
                                             <td>
+                                            @can('ventas.destroy')
                                                 <form action="{{ route('ventas.destroy',$venta->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('ventas.show',$venta->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('ventas.edit',$venta->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
-                                                    @csrf
+                                                    
+                                                @can('ventas.show')
+                                                <a class="btn btn-sm btn-primary " href="{{ route('ventas.show',$venta->id) }}"><i class="fa fa-fw fa-eye"></i> Mostrar</a>
+                                                @endcan    
+                                                
+                                                @can('ventas.edit')
+                                                <a class="btn btn-sm btn-success" href="{{ route('ventas.edit',$venta->id) }}"><i class="fa fa-fw fa-edit"></i> Editar</a>
+                                                @endcan  
+                                                
+                                                @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Eliminar</button>
+                                                    @endcan 
                                                 </form>
                                             </td>
                                         </tr>

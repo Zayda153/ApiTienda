@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedMediumInteger('producto_id');
             $table->decimal('cantidad', 10,2)->comment('cantidad');
             $table->decimal('total', 10,2)->comment('total');
-            $table->foreign('producto_id')->references('id')->on('productos');
+            //$table->foreign('producto_id')->references('id')->on('productos');
         });
     }
 

@@ -43,6 +43,7 @@ class User extends Authenticatable
     public static function etiquetas() {
         return [
             'name' => 'name'
+            ,'perfil'=>'perfil'
             , 'email' => 'email'
             , 'password' => 'password'
         ];
@@ -54,6 +55,7 @@ class User extends Authenticatable
             'empleado' => 'empleado'
         ];
     }
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -73,6 +75,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function registerClient(User $request){
+        $user=User::create([
+            'name'=> $request->name,
+            'email'=>$request->email,
+            'password'=>bcrypt($request->password),
+        ]);
+        $user->assignRole('empleado');
+    } 
 
     
 }

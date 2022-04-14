@@ -101,7 +101,7 @@ class ProductoController extends Controller
         if(!$user->can('productos.create')){
             abort(403,'Sin acceso a esta sección');
         }
-
+        
         request()->validate(Producto::$rules);
 
         $producto->update($request->all());

@@ -7,6 +7,7 @@ use App\http\Controllers\ProveedoreController;
 use App\http\Controllers\SalidaController;
 use App\http\Controllers\EntradaController;
 use App\http\Controllers\UserController;
+use Spatie\Permission\Models\Role;
 
 /*
 |--------------------------------------------------------------------------

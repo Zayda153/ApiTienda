@@ -116,6 +116,24 @@ class RolesPermissionTableSeeder extends Seeder
         $rol_administrador->givePermissionTo($permission);
         $permission = Permission::create(['name' => 'salidas.destroy']);
         $rol_administrador->givePermissionTo($permission);
+
+        $permission = Permission::create(['name' => 'users.index']);
+        $rol_administrador->givePermissionTo($permission);
+        $rol_empleado->givePermissionTo($permission);
+        
+        $permission = Permission::create(['name' => 'users.show']);
+        $rol_administrador->givePermissionTo($permission);
+        $rol_empleado->givePermissionTo($permission);
+        $permission = Permission::create(['name' => 'users.create']);
+        $rol_administrador->givePermissionTo($permission);
+        $permission = Permission::create(['name' => 'users.store']);
+        $rol_administrador->givePermissionTo($permission);
+        $permission = Permission::create(['name' => 'users.edit']);
+        $rol_administrador->givePermissionTo($permission);
+        $permission = Permission::create(['name' => 'users.update']);
+        $rol_administrador->givePermissionTo($permission);
+        $permission = Permission::create(['name' => 'users.destroy']);
+        $rol_administrador->givePermissionTo($permission);
     }
 
 }

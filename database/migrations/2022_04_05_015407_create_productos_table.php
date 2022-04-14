@@ -20,7 +20,7 @@ return new class extends Migration
             $table->decimal('existencias', 10,2)->comment('Empresa');
             $table->decimal('costo_unitario', 10,2)->comment('dias_visita');
             $table->decimal('precio_unitario', 10,2)->comment('dias_visita');
-            $table->foreign('proveedor_id')->references('id')->on('proveedores');
+           //$table->foreign('proveedor_id')->references('id')->on('proveedores');
 
         });
     }

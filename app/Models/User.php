@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -24,6 +25,7 @@ class User extends Authenticatable
 
     protected $fillable = [
         'name',
+        'perfil',
         'email',
         'password',
     ];
@@ -31,7 +33,8 @@ class User extends Authenticatable
     public static function reglasValidacion() {
         // https://laravel.com/docs/9.x/validation#available-validation-rules
         return [
-            'name' => 'required|string|min:0'
+            'name' => 'required|string|min:0',
+            'perfil'=>'required|in:'.implode(',', self::opcionesPerfil())
             , 'email' => 'required|string|min:0|max:100'
             , 'password' => 'required|string|min:6'
         ];
@@ -42,6 +45,13 @@ class User extends Authenticatable
             'name' => 'name'
             , 'email' => 'email'
             , 'password' => 'password'
+        ];
+    }
+
+    public static function opcionesPerfil(){
+        return[
+            'administrador' => 'administrador',
+            'empleado' => 'empleado'
         ];
     }
 
@@ -63,4 +73,6 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    
 }

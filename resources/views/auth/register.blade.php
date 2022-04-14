@@ -24,6 +24,28 @@
                                 @enderror
                             </div>
                         </div>
+                        
+                        <!--perfil-->
+                        <div class="row mb-3">
+                            <label for="perfil" class="col-md-4 col-form-label text-md-end">{{ __('Perfil') }}</label>
+
+                            <div class="col-md-6">
+                                <!--Group or default - Administrador -->
+                            <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" id="administrador" name="perfil" value="administrador">
+                                    <label class="custom-control-label" for="perfil">Administrador</label>
+                                </div>
+
+                                <!-- Group of default radios - Empleado -->
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" id="empleado" name="perfil" value="empleado">
+                                    <label class="custom-control-label" for="perfil">Empleado</label>
+                                </div>
+                            </div>
+
+                        </div>
+
+
 
                         <div class="row mb-3">
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>

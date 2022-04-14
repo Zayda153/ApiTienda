@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Producto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class ProductoController
@@ -31,6 +32,11 @@ class ProductoController extends Controller
      */
     public function create()
     {
+        $user= Auth::user();
+        if(!$user->can('productos.create')){
+            abort(403,'Sin acceso a esta sección');
+        }
+
         $producto = new Producto();
         return view('producto.create', compact('producto'));
     }
@@ -72,6 +78,11 @@ class ProductoController extends Controller
      */
     public function edit($id)
     {
+        $user= Auth::user();
+        if(!$user->can('productos.create')){
+            abort(403,'Sin acceso a esta sección');
+        }
+
         $producto = Producto::find($id);
 
         return view('producto.edit', compact('producto'));
@@ -86,6 +97,11 @@ class ProductoController extends Controller
      */
     public function update(Request $request, Producto $producto)
     {
+        $user= Auth::user();
+        if(!$user->can('productos.create')){
+            abort(403,'Sin acceso a esta sección');
+        }
+
         request()->validate(Producto::$rules);
 
         $producto->update($request->all());
@@ -101,6 +117,11 @@ class ProductoController extends Controller
      */
     public function destroy($id)
     {
+        $user= Auth::user();
+        if(!$user->can('productos.create')){
+            abort(403,'Sin acceso a esta sección');
+        }
+
         $producto = Producto::find($id)->delete();
 
         return redirect()->route('productos.index')
